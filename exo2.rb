@@ -3,7 +3,7 @@ def demande_etages
   print "> "
   return gets.to_i + 1
 end
-
+#creation de la pyramide
 def pyramide(etages)
   a = etages
   diese = "#"

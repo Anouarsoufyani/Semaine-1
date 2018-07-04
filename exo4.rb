@@ -34,7 +34,6 @@ def escalier(pos)
     if @position == pos
       puts "#{" " * (a-1) + "8" + "#" * i}"
       a -= 1
-      i += 1
       @position += 1
     else
       puts "#{" " * (a) + "#" * i}"
