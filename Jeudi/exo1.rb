@@ -14,18 +14,24 @@ end
 
 def parcourt_journaliste(journalistes)
   @compteurElmtChiffre = 0
+  @premiere_majuscule = 0
   @majuscule = 0
   @aude = 0
+  @underscore = 0
 
   journalistes.each do |journaliste|
     recherche_nombre(journaliste)
     recherche_aude(journaliste)
-    recherche_majuscule(journaliste)
+    recherche_premiere_majuscule(journaliste)
+    recherche_majuscules(journaliste)
+    recherche_underscore(journaliste)
   end
 
   puts "Il y a #{@compteurElmtChiffre} journalistes avec un nombre dans le handle."
   puts "Il y a #{@aude} journalistes nommés aude."
-  puts "Il y a #{@majuscule} de handles qui commencent par une majuscule."
+  puts "Il y a #{@premiere_majuscule} de handles qui commencent par une majuscule."
+  puts "Il y a #{@majuscule} de handles qui contiennent une majuscule."
+  puts "Il y a #{@underscore} de handles qui contiennent un underscore."
 
 end
 
@@ -53,10 +59,30 @@ def recherche_aude(journaliste)
 
 end
 
-def recherche_majuscule(journaliste)
+def recherche_premiere_majuscule(journaliste)
 
   if journaliste =~ /@[A-Z]/
-    @majuscule += 1
+    @premiere_majuscule += 1
+  end
+
+end
+
+def recherche_majuscules(journaliste)
+
+  journaliste.each_byte do |c|
+    if c.chr =~ /[A-Z]/
+      @majuscule += 1
+    end
+  end
+
+end
+
+def recherche_underscore(journaliste)
+
+  journaliste.each_byte do |c|
+    if c.chr =~ /_/
+      @underscore += 1
+    end
   end
 
 end
